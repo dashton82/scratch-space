@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleConsoleApp", "SimpleConsoleApp\SimpleConsoleApp.csproj", "{01B5E0F2-4E74-4A13-8BDA-D250C945E089}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ED9A0659-F665-4122-8876-128E0A95EC84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "Application.UnitTests\Application.UnitTests.csproj", "{91D47E33-D02E-4AD4-8945-BE2DF71D9773}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{0508F369-4247-42B7-91D9-D4D6D507481A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01B5E0F2-4E74-4A13-8BDA-D250C945E089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B5E0F2-4E74-4A13-8BDA-D250C945E089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B5E0F2-4E74-4A13-8BDA-D250C945E089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B5E0F2-4E74-4A13-8BDA-D250C945E089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91D47E33-D02E-4AD4-8945-BE2DF71D9773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91D47E33-D02E-4AD4-8945-BE2DF71D9773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91D47E33-D02E-4AD4-8945-BE2DF71D9773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91D47E33-D02E-4AD4-8945-BE2DF71D9773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0508F369-4247-42B7-91D9-D4D6D507481A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0508F369-4247-42B7-91D9-D4D6D507481A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0508F369-4247-42B7-91D9-D4D6D507481A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0508F369-4247-42B7-91D9-D4D6D507481A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{91D47E33-D02E-4AD4-8945-BE2DF71D9773} = {ED9A0659-F665-4122-8876-128E0A95EC84}
+	EndGlobalSection
+EndGlobal
