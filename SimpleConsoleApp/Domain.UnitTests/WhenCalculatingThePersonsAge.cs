@@ -29,9 +29,9 @@ namespace Domain.UnitTests
         public void Then_The_Age_Is_Correctly_Rounded_Down(Person person)
         {
             person.DateToday = DateTime.UtcNow;
-            person.DateOfBirth = DateTime.Now.AddYears(-10);
+            person.DateOfBirth = DateTime.Now.AddYears(-10).AddMonths(-1);
 
-            person.Age.Should().Be(10);
+            person.Age.Should().Be(9);
         }
     }
 }
