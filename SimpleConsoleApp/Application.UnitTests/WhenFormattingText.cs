@@ -1,3 +1,5 @@
+using AutoFixture.NUnit3;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace Application.UnitTests
@@ -26,5 +28,14 @@ namespace Application.UnitTests
             
             Assert.AreEqual(expected, actual);
         }
+
+        [Test, AutoData]
+        public void Then_The_Correct_Response_Is_Returned_If_You_Have_Numeric_Characters_In_FirstName_And_LastName(string firstName, string lastName)
+        {
+            var actual = _service.GetGreeting(firstName, lastName);
+
+            actual.Should().Be($"You have number in your name!!");
+        }
+        
     }
 }
