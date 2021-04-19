@@ -1,4 +1,6 @@
 using System;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace Application
 {
@@ -6,33 +8,33 @@ namespace Application
     {
         public string GetGreeting(string firstName, string lastName)
         {
-            string fullName = firstName + lastName;
-            string reverseName = string.Empty;
+            var fullName = firstName + lastName;
+            var reverseName = Palindrome(fullName);
+            
+            if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName))
+                return "You have no name!";
+
+            if (Regex.IsMatch(fullName, "[0-9]"))
+                return ("You have number in your name!!");
+
+            if (reverseName.ToLower() == fullName.ToLower())
+                return ("Your name is a palindrome!!");
+
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
+                return $"Hello {firstName}{lastName}".Trim();            
+
+            return ($"Hello {firstName} {lastName}");
+        }
+
+        private string Palindrome (string fullName)
+        {
+            StringBuilder reverseName = new StringBuilder();
+
             for (int i = fullName.Length -1; i >= 0; i-- )
-            {
-                reverseName += fullName[i].ToString();
+                 reverseName.Append(fullName[i]);
 
-                 if (reverseName.ToLower() == fullName.ToLower())
-                     return ("Your name is a palindrome!!");
-            }
+            return reverseName.ToString();
 
-            foreach (char c in firstName + lastName)
-            {
-                if (Char.IsDigit(c))
-                {
-                    return ("You have number in your name!!");
-                }
-            }
-
-            if (String.IsNullOrEmpty(firstName) || String.IsNullOrEmpty(lastName))
-            {
-                if (String.IsNullOrEmpty(firstName) && String.IsNullOrEmpty(lastName))
-                    return "You have no name!";
-
-                else return ($"Hello {firstName.Trim()}{lastName.Trim()}");
-            }
- 
-            else return ($"Hello {firstName} {lastName}");
         }
     }
 }
