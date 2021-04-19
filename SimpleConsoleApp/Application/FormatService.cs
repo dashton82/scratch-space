@@ -8,33 +8,30 @@ namespace Application
     {
         public string GetGreeting(string firstName, string lastName)
         {
-            var fullName = firstName + lastName;
-            var reverseName = Palindrome(fullName);
-            
             if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName))
                 return "You have no name!";
 
+            var fullName = firstName + lastName;
             if (Regex.IsMatch(fullName, "[0-9]"))
                 return ("You have number in your name!!");
 
-            if (reverseName.ToLower() == fullName.ToLower())
+            if (ReverseString(fullName).Equals(fullName.ToLower(), StringComparison.CurrentCultureIgnoreCase))
                 return ("Your name is a palindrome!!");
 
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
                 return $"Hello {firstName}{lastName}".Trim();            
 
-            return ($"Hello {firstName} {lastName}");
+            return $"Hello {firstName} {lastName}";
         }
 
-        private string Palindrome (string fullName)
+        private string ReverseString (string input)
         {
-            StringBuilder reverseName = new StringBuilder();
+            var reverseInput = new StringBuilder();
 
-            for (int i = fullName.Length -1; i >= 0; i-- )
-                 reverseName.Append(fullName[i]);
+            for (var i = input.Length -1; i >= 0; i-- )
+                 reverseInput.Append(input[i]);
 
-            return reverseName.ToString();
-
+            return reverseInput.ToString();
         }
     }
 }
