@@ -1,6 +1,8 @@
 using AutoFixture.NUnit3;
+using Domain;
 using FluentAssertions;
 using NUnit.Framework;
+using System;
 
 namespace Application.UnitTests
 {
@@ -22,11 +24,12 @@ namespace Application.UnitTests
         [TestCase("Barry", "5", "You have number in your name!!")]
         [TestCase("Anna", "", "Your name is a palindrome!!")]
         [TestCase("", "Madam", "Your name is a palindrome!!")]
+        
         public void Then_When_Calling_GetGreeting_Then_The_Expected_ResponseIs_Returned(string firstName, string lastName, string expected)
         {
-            var actual = _service.GetGreeting(firstName, lastName);
-            
-            Assert.AreEqual(expected, actual);
+            var dateOfBirth = new DateTime();
+            var actual = new Person(firstName, lastName, dateOfBirth);
+            Assert.AreEqual(expected, actual.GreetingMessage);
         }
 
         [Test, AutoData]

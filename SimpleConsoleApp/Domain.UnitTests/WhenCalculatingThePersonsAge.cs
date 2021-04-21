@@ -11,6 +11,7 @@ namespace Domain.UnitTests
         public void Then_If_DateOfBirth_In_Future_Then_Age_Is_Zero(Person person)
         {
             person.DateOfBirth = DateTime.Now.AddDays(1);
+            person.DateToday = DateTime.UtcNow;
 
             person.Age.Should().Be(0);
         }
