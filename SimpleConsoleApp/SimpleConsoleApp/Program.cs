@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Application;
 using Domain;
 
 namespace SimpleConsoleApp
@@ -12,20 +13,20 @@ namespace SimpleConsoleApp
         {
             var personList = new List<Person>();
 
-            bool moreEntries = true;
-
-            do
+            var moreEntries = true;
+            var greeting = new FormatService();
+            while (moreEntries)
             {
                 Console.WriteLine("Enter First Name");
-                string firstName = Console.ReadLine();
+                var firstName = Console.ReadLine();
 
                 Console.WriteLine("Enter Surname");
-                String lastName = Console.ReadLine();
+                var lastName = Console.ReadLine();
 
                 Console.WriteLine("Enter Date of Birth (dd/mm/yyyy)");
-                DateTime dateOfBirth = DateTime.Parse(Console.ReadLine());
+                var dateOfBirth = DateTime.Parse(Console.ReadLine());
                 
-                var person = new Person(firstName, lastName, dateOfBirth);
+                var person = new Person(firstName, lastName, dateOfBirth, greeting.GetGreeting);
 
                 Console.WriteLine(person.GreetingMessage);
                 Console.WriteLine(person.Age);
@@ -33,12 +34,14 @@ namespace SimpleConsoleApp
                 personList.Add(person);
 
                 Console.WriteLine("press y to add another");
-                string yEntry = Console.ReadLine().ToLower();
+                var yEntry = Console.ReadLine().ToLower();
 
-                if (yEntry != "y") moreEntries = false;
+                if (yEntry != "y")
+                {
+                    moreEntries = false;
+                }
 
-
-            } while (moreEntries);
+            }
 
             Console.WriteLine(personList.Count);
 

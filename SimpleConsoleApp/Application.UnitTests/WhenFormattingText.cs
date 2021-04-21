@@ -27,17 +27,20 @@ namespace Application.UnitTests
         
         public void Then_When_Calling_GetGreeting_Then_The_Expected_ResponseIs_Returned(string firstName, string lastName, string expected)
         {
+            var greeting = new FormatService();
             var dateOfBirth = new DateTime();
-            var actual = new Person(firstName, lastName, dateOfBirth);
+            var actual = new Person(firstName, lastName, dateOfBirth, greeting.GetGreeting );
             Assert.AreEqual(expected, actual.GreetingMessage);
         }
 
         [Test, AutoData]
         public void Then_The_Correct_Response_Is_Returned_If_You_Have_Numeric_Characters_In_FirstName_And_LastName(string firstName, string lastName)
         {
-            var actual = _service.GetGreeting(firstName, lastName);
-
-            actual.Should().Be($"You have number in your name!!");
+            var greeting = new FormatService();
+            var dateOfBirth = new DateTime();
+            var actual = new Person(firstName, lastName, dateOfBirth, greeting.GetGreeting );
+            
+            actual.GreetingMessage.Should().Be($"You have number in your name!!");
         }
         
     }
