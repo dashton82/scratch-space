@@ -1,6 +1,4 @@
 using System;
-using Application;
-
 
 namespace Domain
 {
@@ -18,7 +16,7 @@ namespace Domain
 
         public string FirstName { get; }
         public string LastName { get;  }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; }
         public int Age => GetAge();
         public string GreetingMessage => _getGreeting(FirstName, LastName);
 

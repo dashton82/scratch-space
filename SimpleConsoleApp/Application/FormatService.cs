@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Application
 {
-    public class FormatService
+    public class FormatService : IFormatService
     {
         public string GetGreeting(string firstName, string lastName)
         {
