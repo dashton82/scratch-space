@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Application;
+using Data;
 using Domain;
 
 namespace SimpleConsoleApp
@@ -10,40 +11,46 @@ namespace SimpleConsoleApp
 
         static void Main(string[] args)
         {
-            var personList = new List<Person>();
+ //           var personList = new List<Person>();
 
-            var moreEntries = true;
+ //           var moreEntries = true;
             var greeting = new FormatService();
-            while (moreEntries)
+            /*           while (moreEntries)
+                    {
+                          Console.WriteLine("Enter First Name");
+                          var firstName = Console.ReadLine();
+
+                          Console.WriteLine("Enter Surname");
+                          var lastName = Console.ReadLine();
+
+                          Console.WriteLine("Enter Date of Birth (dd/mm/yyyy)");
+                          var dateOfBirth = DateTime.Parse(Console.ReadLine());
+
+                          var person = new Person(firstName, lastName, dateOfBirth, greeting.GetGreeting);
+
+                          Console.WriteLine(person.GreetingMessage);
+                          Console.WriteLine(person.Age);
+
+                          personList.Add(person);
+
+                          Console.WriteLine("press y to add another");
+                          var yEntry = Console.ReadLine().ToLower();
+
+                          if (yEntry != "y")
+                          {
+                              moreEntries = false;
+                          }
+
+                      }
+
+                      Console.WriteLine(personList.Count); */
+
+            var repository = new PersonFileRepository();
+            var people = repository.GetAll();
+            foreach (var item in people)
             {
-                Console.WriteLine("Enter First Name");
-                var firstName = Console.ReadLine();
-
-                Console.WriteLine("Enter Surname");
-                var lastName = Console.ReadLine();
-
-                Console.WriteLine("Enter Date of Birth (dd/mm/yyyy)");
-                var dateOfBirth = DateTime.Parse(Console.ReadLine());
-                
-                var person = new Person(firstName, lastName, dateOfBirth, greeting.GetGreeting);
-
-                Console.WriteLine(person.GreetingMessage);
-                Console.WriteLine(person.Age);
-
-                personList.Add(person);
-
-                Console.WriteLine("press y to add another");
-                var yEntry = Console.ReadLine().ToLower();
-
-                if (yEntry != "y")
-                {
-                    moreEntries = false;
-                }
-
+                Console.WriteLine();
             }
-
-            Console.WriteLine(personList.Count);
-
 
         }
     }

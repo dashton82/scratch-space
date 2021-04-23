@@ -26,20 +26,38 @@ namespace Domain.UnitTests
         }
         
         [Test, AutoData]
-        public void Then_If_DateOfBirth_In_Past_Then_Age_Is_Calculated_Correctly(Person person)
+        public void Then_If_DateOfBirth_In_Past_Then_Age_Is_Calculated_Correctly(string firstname, string lastName, string greeting)
         {
-            person.DateOfBirth = DateTime.Now.AddYears(-10);
+            //Arrange
+            var mockService = new Mock<IFormatService>();
+            mockService.Setup(x => x.GetGreeting(firstname, lastName)).Returns(greeting);
 
+            var dateOfBirth = DateTime.Now.AddYears(-10);
+
+            //Act
+            var person = new Person(firstname, lastName, dateOfBirth, mockService.Object.GetGreeting);
+
+            //Assert
             person.Age.Should().Be(10);
+            person.GreetingMessage.Should().Be(greeting);
         }
         
         
         [Test, AutoData]
-        public void Then_The_Age_Is_Correctly_Rounded_Down(Person person)
+        public void Then_The_Age_Is_Correctly_Rounded_Down(string firstname, string lastName, string greeting)
         {
-            person.DateOfBirth = DateTime.Now.AddYears(-10).AddMonths(1);
+            //Arrange
+            var mockService = new Mock<IFormatService>();
+            mockService.Setup(x => x.GetGreeting(firstname, lastName)).Returns(greeting);
 
+            var dateOfBirth = DateTime.Now.AddYears(-10).AddMonths(1);
+
+            //Act
+            var person = new Person(firstname, lastName, dateOfBirth, mockService.Object.GetGreeting);
+
+            //Assert
             person.Age.Should().Be(9);
+            person.GreetingMessage.Should().Be(greeting);
         }
     }
 }
