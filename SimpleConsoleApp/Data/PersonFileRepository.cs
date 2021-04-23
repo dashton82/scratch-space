@@ -15,8 +15,8 @@ namespace Data
             using (var r = new StreamReader("people.json"))
             {
                 var json = r.ReadToEnd();
-                var items = JsonConvert.DeserializeObject<List<PersonEntity>>(json);
-                return items.ToList();
+                var items = JsonConvert.DeserializeObject<PersonImport>(json);
+                return items.Persons.ToList();
             }
         }
     }
