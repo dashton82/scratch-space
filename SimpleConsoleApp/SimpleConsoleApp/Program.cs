@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Application;
 using Data;
 using Domain;
+using Domain.Interfaces;
 
 namespace SimpleConsoleApp
 {
@@ -13,6 +14,11 @@ namespace SimpleConsoleApp
         {
  //           var personList = new List<Person>();
 
+ 
+ 
+ var service = new PersonService(new PersonFileRepository(), new FormatService());
+ // var service1 = new PersonService(new IPersonRepository(), new FormatService());
+ 
  //           var moreEntries = true;
             var greeting = new FormatService();
             /*           while (moreEntries)
