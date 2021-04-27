@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Data;
 using Domain;
 using Domain.Interfaces;
 
@@ -18,22 +17,23 @@ namespace Application
         }
         public IEnumerable<Person> GetPeople()
         {
-            var entites = _personRepository.GetAll();
+            var entities = _personRepository.GetAll();
 
             var listPerson = new List<Person>();
 
-            if(entites != null)
+            if (entities == null)
             {
-                foreach (var personEntity in entites)
-                {
-                    var person = new Person(personEntity.FirstName, personEntity.LastName, personEntity.DateOfBirth, _formatService.GetGreeting);
-                    listPerson.Add(person);
-                } 
-                return listPerson; 
+                return null;
             }
-
-            listPerson = null;
+            
+            foreach (var personEntity in entities)
+            {
+                var person = new Person(personEntity.FirstName, personEntity.LastName, personEntity.DateOfBirth, _formatService.GetGreeting);
+                listPerson.Add(person);
+            } 
+            
             return listPerson;
+
         }
     }
 }
