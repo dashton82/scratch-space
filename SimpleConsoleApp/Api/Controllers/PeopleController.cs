@@ -4,13 +4,15 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("/api/[controller]/")]
-    public class PeopleController
+    public class PeopleController : ControllerBase
     {
         [HttpGet]
         [Route("")]
         public IActionResult GetAll()
         {
-            return new OkResult();
+            var something = "test";
+            
+            return Ok(something);
         }
     }
 }

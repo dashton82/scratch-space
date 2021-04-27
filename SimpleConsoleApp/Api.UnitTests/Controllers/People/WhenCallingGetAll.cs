@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net;
 using Api.Controllers;
 using AutoFixture.NUnit3;
 using Domain;
@@ -23,10 +24,11 @@ namespace Api.UnitTests.Controllers.People
             service.Setup(x => x.GetPeople()).Returns(returnData);
             
             //Act
-            var actual = controller.GetAll() as OkResult;
+            var actual = controller.GetAll() as ObjectResult;
             
             //Assert
             actual.Should().NotBeNull();
+            actual.StatusCode.Should().Be((int) HttpStatusCode.OK);
         }
     }
 }
