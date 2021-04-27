@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Data
 {
-
+    // Gets data from Json and converts to list 
     public class PersonFileRepository : IPersonRepository
     {
         public IEnumerable<PersonEntity> GetAll()
@@ -20,25 +20,6 @@ namespace Data
                 return items.Persons.ToList();
             }
         }
-        public string Hello(string missing_name)
-        {
-            throw new NotImplementedException();
-        }
-        private string GetSomething()
-        {
-            return "";
-        }
-
-        public void CreatePerson(PersonEntity person)
-        {
-            throw new NotImplementedException();
-        }
-
-        public PersonEntity GetById(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
-
         
     }
 

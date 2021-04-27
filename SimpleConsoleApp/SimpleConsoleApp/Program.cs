@@ -12,15 +12,14 @@ namespace SimpleConsoleApp
 
         static void Main(string[] args)
         {
- //           var personList = new List<Person>();
+            var service = new PersonService(new PersonFileRepository(), new FormatService());
+            var people = service.GetPeople();
 
- 
- 
- var service = new PersonService(new PersonFileRepository(), new FormatService());
- // var service1 = new PersonService(new IPersonRepository(), new FormatService());
- 
- //           var moreEntries = true;
-            var greeting = new FormatService();
+
+            //           var personList = new List<Person>();
+            //           var moreEntries = true;
+            // var service1 = new PersonService(new IPersonRepository(), new FormatService());
+
             /*           while (moreEntries)
                     {
                           Console.WriteLine("Enter First Name");
@@ -51,12 +50,6 @@ namespace SimpleConsoleApp
 
                       Console.WriteLine(personList.Count); */
 
-            var repository = new PersonFileRepository();
-            var people = repository.GetAll();
-            foreach (var item in people)
-            {
-                Console.WriteLine();
-            }
 
         }
     }
