@@ -17,10 +17,12 @@ namespace Api.UnitTests.Controllers.People
         [Test, MoqAutoData]
         public void Then_Ok_Is_Returned(
             List<Person> returnData,
+            // Frozen - we provide the data for it to return 
             [Frozen] Mock<IPersonService> service,
             [Greedy] PeopleController controller)
         {
             //Arrange
+            // this is where we provide the data for return 
             service.Setup(x => x.GetPeople()).Returns(returnData);
             
             //Act

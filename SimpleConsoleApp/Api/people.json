@@ -1,0 +1,22 @@
+{
+  "persons": [
+    {
+      "id": "032A6C81-8612-4BC6-8197-CFC3CE85CD3E",
+      "firstName": "Barry",
+      "lastName": "Smith",
+      "dateOfBirth": "1990-01-21T00:00:00"
+    },
+    {
+      "id": "9D6B8488-3335-4633-BE98-FE4BCB1C1CC2",
+      "firstName": "Lucy",
+      "lastName": "O'Hara",
+      "dateOfBirth": "1984-04-11T00:00:00"
+    },
+    {
+      "id": "00579048-B343-4CA8-B1BF-8D4D835B338F",
+      "firstName": "Alice",
+      "lastName": "Davies",
+      "dateOfBirth": "1973-11-01T00:00:00"
+    }
+  ]
+}

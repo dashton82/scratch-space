@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application;
+using Data;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,6 +25,10 @@ namespace Api
             services
                 .AddMvc(o => { })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddTransient<IPersonService, PersonService>();
+            services.AddTransient<IFormatService, FormatService>();
+            services.AddTransient<IPersonRepository, PersonFileRepository>();
 
             services.AddSwaggerGen(c =>
             {
