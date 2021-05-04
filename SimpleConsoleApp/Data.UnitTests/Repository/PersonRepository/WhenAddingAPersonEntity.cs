@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoFixture.NUnit3;
 using Domain;
-using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using SFA.DAS.Courses.Data.UnitTests.DatabaseMock;
@@ -10,11 +10,12 @@ using SFA.DAS.Testing.AutoFixture;
 
 namespace Data.UnitTests.Repository.PersonRepository
 {
-    public class WhenGettingAll
+    public class WhenAddingAPersonEntity
     {
         [Test, MoqAutoData]
-        public async Task Then_The_Person_Entities_Are_Returned_From_The_Repository(
+        public async Task Then_The_Person_Entity_Are_Returned_From_The_Repository(
             List<PersonEntity> persons,
+            PersonEntity person,
             [Frozen]Mock<IPersonDataContext> dataContext,
             Data.Repository.PersonRepository personRepository)
         {
@@ -22,11 +23,11 @@ namespace Data.UnitTests.Repository.PersonRepository
             dataContext.Setup(x => x.PersonEntities).ReturnsDbSet(persons);
 
             //Act
-            var actual = await personRepository.GetAll();
+            await personRepository.Create(person);
 
             //Assert
-            actual.Should().BeEquivalentTo(persons);
-
+            dataContext.Verify(x=>x.SaveChanges(), Times.Once);
+            //verify its been added?
         }
     }
 }

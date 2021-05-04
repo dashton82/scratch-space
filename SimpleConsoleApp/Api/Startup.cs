@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application;
 using Data;
+using Data.Repository;
 using Domain.Configuration;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -57,11 +58,16 @@ namespace Api
                 .GetSection("ApiConfiguration")
                 .Get<ApiConfiguration>();
 
-            services.AddDbContext<PersonDataContext>(options=>options.UseSqlServer(config.ConnectionString),ServiceLifetime.Transient);
+            //services.AddDbContext<PersonDataContext>(options=>options.UseSqlServer(config.ConnectionString),ServiceLifetime.Transient);
+            
+            
+            services.AddDbContext<PersonDataContext>(options => options.UseInMemoryDatabase("SimpleApi"), ServiceLifetime.Transient);
+
+            services.AddTransient<IPersonDataContext, PersonDataContext>();
             
             services.AddTransient<IPersonService, PersonService>();
             services.AddTransient<IFormatService, FormatService>();
-            services.AddTransient<IPersonRepository, PersonFileRepository>();
+            services.AddTransient<IPersonRepository, PersonRepository>();
 
             services.AddSwaggerGen(c =>
             {

@@ -6,6 +6,7 @@ namespace Data
     public interface IPersonDataContext
     {
         DbSet<Domain.PersonEntity> PersonEntities { get; set; }
+        int SaveChanges();
     }
     
     public class PersonDataContext : DbContext, IPersonDataContext

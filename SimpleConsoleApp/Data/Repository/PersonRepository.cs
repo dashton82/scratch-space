@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using Domain.Interfaces;
@@ -9,17 +10,28 @@ namespace Data.Repository
 {
     public class PersonRepository : IPersonRepository
     {
+        private readonly IPersonDataContext _personDataContext;
+
+        public PersonRepository (IPersonDataContext personDataContext)
+        {
+            _personDataContext = personDataContext;
+        }
+        
         public async Task<IEnumerable<PersonEntity>> GetAll()
         {
-            throw new NotImplementedException();
+            var people =  await _personDataContext.PersonEntities.ToListAsync();
+            
+            return people;
         }
 
         public Task Create(PersonEntity person)
         {
+
+            //_personDataContext.SaveChanges();
             throw new NotImplementedException();
         }
 
-        public Task<PersonEntity> GetById(Guid id)
+        public async Task<PersonEntity> GetById(Guid id)
         {
             throw new NotImplementedException();
         }
