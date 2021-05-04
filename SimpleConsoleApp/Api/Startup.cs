@@ -1,15 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Application;
 using Data;
+using Domain.Configuration;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -18,6 +22,29 @@ namespace Api
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            var config = new ConfigurationBuilder()
+                .AddConfiguration(configuration)
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddEnvironmentVariables();
+
+
+            if (!configuration["Environment"].Equals("DEV", StringComparison.CurrentCultureIgnoreCase))
+            {
+
+#if DEBUG
+                config
+                    .AddJsonFile("appsettings.json", true)
+                    .AddJsonFile("appsettings.Development.json", true);
+#endif
+
+            }
+
+            _configuration = config.Build();
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -25,7 +52,13 @@ namespace Api
             services
                 .AddMvc(o => { })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            
+            var config = _configuration
+                .GetSection("ApiConfiguration")
+                .Get<ApiConfiguration>();
 
+            services.AddDbContext<PersonDataContext>(options=>options.UseSqlServer(config.ConnectionString),ServiceLifetime.Transient);
+            
             services.AddTransient<IPersonService, PersonService>();
             services.AddTransient<IFormatService, FormatService>();
             services.AddTransient<IPersonRepository, PersonFileRepository>();

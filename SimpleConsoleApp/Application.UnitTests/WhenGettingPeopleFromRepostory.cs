@@ -21,7 +21,7 @@ namespace Application.UnitTests
             //Arrange
             // Can only mock interfaces 
             var mockRepo = new Mock<IPersonRepository>();
-            mockRepo.Setup(x => x.GetAll()).Returns(personEntities);
+            mockRepo.Setup(x => x.GetAll()).ReturnsAsync(personEntities);
             var mockGreetingService = new Mock<IFormatService>();
             mockGreetingService.Setup(x => x.GetGreeting(It.IsAny<string>(), It.IsAny<string>())).Returns(greeting);
             var service = new PersonService(mockRepo.Object, mockGreetingService.Object);
@@ -40,7 +40,7 @@ namespace Application.UnitTests
         {
             //Arrange
             var mockRepo = new Mock<IPersonRepository>();
-            mockRepo.Setup(x => x.GetAll()).Returns((IEnumerable<PersonEntity>)null);// return null when we call the repository GetAll method
+            mockRepo.Setup(x => x.GetAll()).ReturnsAsync((IEnumerable<PersonEntity>)null);// return null when we call the repository GetAll method
             var mockGreetingService = new Mock<IFormatService>();
             var service = new PersonService(mockRepo.Object, mockGreetingService.Object);
 

@@ -17,7 +17,7 @@ namespace Application
         }
         public IEnumerable<Person> GetPeople()
         {
-            var entities = _personRepository.GetAll();
+            var entities = _personRepository.GetAll().Result;
 
             var listPerson = new List<Person>();
 
