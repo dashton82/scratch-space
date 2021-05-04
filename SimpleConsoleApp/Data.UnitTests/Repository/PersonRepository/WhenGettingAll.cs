@@ -18,10 +18,12 @@ namespace Data.UnitTests.Repository.PersonRepository
             [Frozen]Mock<IPersonDataContext> dataContext,
             Data.Repository.PersonRepository personRepository)
         {
+            //Arrage
             dataContext.Setup(x => x.PersonEntities).ReturnsDbSet(persons);
 
+            //Act 
             var actual = await personRepository.GetAll();
-
+            // 
             actual.Should().BeEquivalentTo(persons);
 
         }
