@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture.NUnit3;
 using Domain;
@@ -27,7 +28,9 @@ namespace Data.UnitTests.Repository.PersonRepository
 
             //Assert
             dataContext.Verify(x=>x.SaveChanges(), Times.Once);
+
             //verify its been added?
+            dataContext.Verify(x => x.PersonEntities.AddAsync(person, CancellationToken.None), Times.Once);
         }
     }
 }

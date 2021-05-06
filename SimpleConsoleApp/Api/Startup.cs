@@ -58,10 +58,10 @@ namespace Api
                 .GetSection("ApiConfiguration")
                 .Get<ApiConfiguration>();
 
-            //services.AddDbContext<PersonDataContext>(options=>options.UseSqlServer(config.ConnectionString),ServiceLifetime.Transient);
+            services.AddDbContext<PersonDataContext>(options=>options.UseSqlServer(config.ConnectionString),ServiceLifetime.Transient);
             
             
-            services.AddDbContext<PersonDataContext>(options => options.UseInMemoryDatabase("SimpleApi"), ServiceLifetime.Transient);
+            //services.AddDbContext<PersonDataContext>(options => options.UseInMemoryDatabase("SimpleApi"), ServiceLifetime.Transient);
 
             services.AddTransient<IPersonDataContext, PersonDataContext>();
             
